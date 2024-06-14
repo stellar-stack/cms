@@ -2,6 +2,8 @@
 
     <div id="wrapper">
 
+    <?php if($connection) echo 'connected'; ?>
+
         <!-- Navigation -->
        <?php include "includes/navigation.php" ?>
 
@@ -18,6 +20,7 @@
                             Welcome To Admin
                             <small>User</small>
                         </h1>
+
                         
                     </div>
                 </div>
