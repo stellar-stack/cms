@@ -14,7 +14,7 @@
         <li><a href="../index.php">HOME SITE</a></li>
 
 
-
+<!-- Top Menu Item -->
 
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
@@ -38,7 +38,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
 
 
@@ -50,7 +50,7 @@
                     </li>
 
                     <li>
-                        <a href="#">Add Posts</a>
+                        <a href="posts.php?source=add_post">Add Posts</a>
                     </li>
                 </ul>
             </li>
