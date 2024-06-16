@@ -86,4 +86,6 @@ while($row = mysqli_fetch_assoc($select_posts)) {
 
                        confirm($delete_query);
 
+                       header("Location: posts.php");
+
                     }
