@@ -2,7 +2,7 @@
 
     <div id="wrapper">
 
-    <?php if($connection) echo 'connected'; ?>
+    <?php //if($connection) echo 'connected'; ?>
 
         <!-- Navigation -->
        <?php include "includes/navigation.php" ?>
