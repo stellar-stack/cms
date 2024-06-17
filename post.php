@@ -53,8 +53,7 @@
                 <img class="img-responsive" src="./img/<?php echo $post_image ?>" alt="image 900 x 300">
                 <hr>
                 <p><?php echo $post_content ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
+                
                 <hr>
             <?php } ?>
 
