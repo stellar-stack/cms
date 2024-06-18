@@ -54,3 +54,15 @@ setTimeout(function() {
 }, 700); // 700ms delay before starting fade out
 
 
+
+function loadUserOnline() {
+  $.get("functions.php?onlineusers=result", function(data) {
+    $(".usersonline").text(data);
+  });
+}
+
+setInterval(function() {
+
+  loadUserOnline();
+
+}, 500);
