@@ -224,6 +224,5 @@ ul.alert-dropdown {
 }
 
 #bulkOptionContainer {
-
-    padding: 0px ;
+    padding: 0px !important;
 }

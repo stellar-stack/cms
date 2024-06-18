@@ -16,11 +16,11 @@
 
             if (isset($_GET['p_id'])) {
                 $the_post_id = $_GET['p_id'];
-            
-                $view_query = "UPDATE posts SET post_views_counts = post_views_counts + 1 WHERE post_id = $the_post_id ";
-                $send_query = mysqli_query($connection, $view_query);
+                $the_post_author = $_GET['author'];
+            }
 
-            $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
+
+            $query = "SELECT * FROM posts WHERE post_author = '{$the_post_author}' ";
             $select_all_posts_query = mysqli_query($connection, $query);
 
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
@@ -51,19 +51,9 @@
                 <img class="img-responsive" src="./img/<?php echo $post_image ?>" alt="image 900 x 300">
                 <hr>
                 <p><?php echo $post_content ?></p>
-                
-                <hr>
-            <?php } 
-            
-        
-        } else {
 
-            header("Location: index.php");
-        }
-            
-            
-            
-            ?>
+                <hr>
+            <?php } ?>
 
 
 
@@ -80,74 +70,39 @@
                 $comment_content =  $_POST['comment_content'];
 
 
-                if(!empty( $comment_author) && !empty( $comment_email) &&
-                !empty( $comment_content)) {
-                    
+                if (
+                    !empty($comment_author) && !empty($comment_email) &&
+                    !empty($comment_content)
+                ) {
+
 
                     $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content
                 , comment_status, comment_date) ";
 
-                $query .= "VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now()) ";
+                    $query .= "VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now()) ";
 
 
-                $create_comment_query = mysqli_query($connection, $query);
+                    $create_comment_query = mysqli_query($connection, $query);
 
-                if (!$create_comment_query) {
-                    die('QUERY FAILED' . mysqli_error($connection));
-                }
+                    if (!$create_comment_query) {
+                        die('QUERY FAILED' . mysqli_error($connection));
+                    }
 
-                
-                $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
-                $query .= "WHERE post_id = $the_post_id ";
-                $update_comment_count = mysqli_query($connection, $query);
-
+                    $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
+                    $query .= "WHERE post_id = $the_post_id ";
+                    $update_comment_count = mysqli_query($connection, $query);
                 } else {
 
                     echo "<script>alert('Fields Should Not Be Empty')</script>";
                 }
-
-            
             }
-
-           
-
-
 
 
 
 
             ?>
 
-            <!-- Comments Form -->
-            <div class="well">
-                <h4>Leave a Comment:</h4>
-                <form action="" method="post" role="form">
 
-                    <div class="form-group">
-                        <label for="Author">Author</label>
-                        <input type="text" class="form-control" name="comment_author">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="comment_email">
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label for="comment">Your Comment</label>
-                        <textarea name="comment_content" class="form-control" rows="3"></textarea>
-                    </div>
-
-
-
-
-                    <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-
-            <hr>
 
             <!-- Posted Comments -->
 

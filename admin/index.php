@@ -1,5 +1,16 @@
 <?php include "includes/header.php" ?>
 
+
+
+
+
+
+
+
+
+
+
+
 <div id="wrapper">
 
     <?php //if($connection) echo 'connected'; 
@@ -7,6 +18,10 @@
 
     <!-- Navigation -->
     <?php include "includes/navigation.php" ?>
+
+
+    
+
 
     <div id="page-wrapper">
 
