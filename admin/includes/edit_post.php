@@ -9,7 +9,7 @@ $select_posts_by_id = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $post_id = $row['post_id'];
-    $post_author = $row['post_author'];
+    $post_user = $row['post_user'];
     $post_title = $row['post_title'];
     $post_category_id = $row['post_category_id'];
     $post_status = $row['post_status'];
@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
 }
 
 if (isset($_POST['update_post'])) {
-    $post_author = $_POST['author'];
+    $post_user = $_POST['post_user'];
     $post_title = $_POST['title'];
     $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
@@ -45,7 +45,7 @@ if (isset($_POST['update_post'])) {
     $query .= "post_title = '{$post_title}', ";
     $query .= "post_category_id = '{$post_category_id}', ";
     $query .= "post_date = now(), ";
-    $query .= "post_author = '{$post_author}', ";
+    $query .= "post_user = '{$post_user}', ";
     $query .= "post_status = '{$post_status}', ";
     $query .= "post_tags = '{$post_tags}', ";
     $query .= "post_content = '{$post_content}', ";
@@ -86,9 +86,40 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
+<label for="users">Users</label>
+<select name="post_user" id="post_category">
+
+<?php echo "<option value='{$post_user}'>{$post_user}</option>";
+ ?>
+
+    <?php
+
+
+
+    $users_query = "SELECT * FROM users";
+    $selecet_users = mysqli_query($connection, $users_query);
+
+    confirm($selecet_users);
+
+    while ($row = mysqli_fetch_assoc($selecet_users)) {
+        $user_id = $row['user_id'];
+        $user_name = $row['username'];
+
+        echo "<option value='{$user_name}'>{$user_name}</option>";
+    }
+
+
+
+    ?>
+</select>
+
+
+</div>
+
+    <!-- <div class="form-group">
         <label for="author">Post Author</label>
-        <input value="<?php echo htmlspecialchars($post_author); ?>" type="text" class="form-control" name="author">
-    </div>
+        <input value="<?php //echo htmlspecialchars($post_user); ?>" type="text" class="form-control" name="author">
+    </div> -->
 
     <div class="form-group">
         <label for="post_status">Post Status</label>

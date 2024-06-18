@@ -2,7 +2,7 @@
 
 if (isset($_POST['create_post'])) {
     $post_title = $_POST['title'];
-    $post_author = $_POST['author'];
+    $post_user = $_POST['post_user'];
     $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
 
@@ -19,12 +19,12 @@ if (isset($_POST['create_post'])) {
 
 
     $query = "INSERT INTO posts (post_category_id, post_title,
-    post_author, post_date, post_image, post_content, 
+    post_user, post_date, post_image, post_content, 
     post_tags, post_status) ";
 
     $query .= "VALUES('{$post_category_id}',
      '{$post_title}',
-     '{$post_author}',
+     '{$post_user}',
      now(),
      '{$post_image}',
      '{$post_content}',
@@ -59,7 +59,7 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-
+<label for="category">Cate</label>
 <select name="post_category" id="post_category">
 
     <?php
@@ -86,11 +86,44 @@ if (isset($_POST['create_post'])) {
 
 </div>
 
+<!-- ///////////////////////// -->
 
-    <div class="form-group">
+<div class="form-group">
+<label for="users">Users</label>
+<select name="post_user" id="post_category">
+
+    <?php
+
+
+
+    $users_query = "SELECT * FROM users";
+    $selecet_users = mysqli_query($connection, $users_query);
+
+    confirm($selecet_users);
+
+    while ($row = mysqli_fetch_assoc($selecet_users)) {
+        $user_id = $row['user_id'];
+        $user_name = $row['username'];
+
+        echo "<option value='{$user_name}'>{$user_name}</option>";
+    }
+
+
+
+    ?>
+</select>
+
+
+</div>
+
+
+
+
+
+    <!-- <div class="form-group">
         <label for="author">Post Author</label>
         <input type="text" class="form-control" name="author">
-    </div>
+    </div> -->
 
 
     <div class="form-group">
